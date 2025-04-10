@@ -1,0 +1,69 @@
+// Mixins para las habilidades reutilizables
+mixin PuedeLanzarHechizos {
+  void lanzarHechizo() {
+    print("Lanzando hechizo mágico...");
+  }
+}
+
+mixin PuedeAtacarConArmas {
+  void atacarConArma() {
+    print("Atacando con mi espada...");
+  }
+}
+
+mixin PuedeCurar {
+  void curar() {
+    print("Curando a un aliado...");
+  }
+}
+
+// Clase base para los personajes (sin métodos de habilidades)
+class Personaje {
+  String nombre;
+  Personaje(this.nombre);
+}
+
+// Mago: lanza hechizos y puede curar
+class Mago extends Personaje with PuedeLanzarHechizos, PuedeCurar {
+  Mago(String nombre) : super(nombre);
+
+  void mostrarHabilidades() {
+    print("$nombre es un mago:");
+    lanzarHechizo();
+    curar();
+  }
+}
+
+// Guerrero: ataca con armas
+class Guerrero extends Personaje with PuedeAtacarConArmas {
+  Guerrero(String nombre) : super(nombre);
+
+  void mostrarHabilidades() {
+    print("$nombre es un guerrero:");
+    atacarConArma();
+  }
+}
+
+// Paladín: ataca con armas y puede curar
+class Paladin extends Personaje with PuedeAtacarConArmas, PuedeCurar {
+  Paladin(String nombre) : super(nombre);
+
+  void mostrarHabilidades() {
+    print("$nombre es un paladín:");
+    atacarConArma();
+    curar();
+  }
+}
+
+// Función principal para probar los personajes
+void main() {
+  Mago mago = Mago("Gandalf");
+  Guerrero guerrero = Guerrero("Conan");
+  Paladin paladin = Paladin("Uther");
+
+  mago.mostrarHabilidades();
+  print("\n");
+  guerrero.mostrarHabilidades();
+  print("\n");
+  paladin.mostrarHabilidades();
+}
