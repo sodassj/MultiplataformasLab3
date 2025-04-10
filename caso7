@@ -1,0 +1,63 @@
+// Mixins para comportamientos reutilizables
+mixin PuedeAcelerar {
+  void acelerar() {
+    print("Acelerando...");
+  }
+}
+
+mixin PuedeVolar {
+  void volar() {
+    print("Volando por el cielo...");
+  }
+}
+
+mixin PuedeNavegar {
+  void navegar() {
+    print("Navegando por el agua...");
+  }
+}
+
+// Clase base de vehículos
+class Vehiculo {}
+
+// Vehículo terrestre: solo acelera
+class Auto extends Vehiculo with PuedeAcelerar {
+  void mostrarTipo() {
+    print("Soy un auto.");
+  }
+}
+
+// Vehículo aéreo: vuela y acelera
+class Avion extends Vehiculo with PuedeVolar, PuedeAcelerar {
+  void mostrarTipo() {
+    print("Soy un avión.");
+  }
+}
+
+// Vehículo acuático: navega y acelera
+class Bote extends Vehiculo with PuedeNavegar, PuedeAcelerar {
+  void mostrarTipo() {
+    print("Soy un bote.");
+  }
+}
+
+// Función principal para probar los vehículos
+void main() {
+  Auto miAuto = Auto();
+  Avion miAvion = Avion();
+  Bote miBote = Bote();
+
+  print("=== AUTO ===");
+  miAuto.mostrarTipo();
+  miAuto.acelerar();
+
+  print("\n=== AVIÓN ===");
+  miAvion.mostrarTipo();
+  miAvion.volar();
+  miAvion.acelerar();
+
+  print("\n=== BOTE ===");
+  miBote.mostrarTipo();
+  miBote.navegar();
+  miBote.acelerar();
+}
